@@ -312,9 +312,9 @@
             } else {
                 var req = new jsErrLog.ajaxRequest();
                 req.onreadystatechange = function() {
-                    if (mypostrequest.readyState==4){
-                        if (mypostrequest.status==200 || window.location.href.indexOf("http")==-1){
-                            document.getElementById("result").innerHTML=mypostrequest.responseText
+                    if (req.readyState==4){
+                        if (req.status==200 || window.location.href.indexOf("http")==-1){
+                            document.getElementById("result").innerHTML=req.responseText
                         }
                         else{
                             console.info("An error has occured making the request")
@@ -335,8 +335,8 @@
                 };
 
                 req.open("POST", jsErrLog.url, true);
-                req.setRequestHeader("Content-type", "application/json");
-                req.send(errData);
+                req.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+                req.send(JSON.stringify(errData));
             }
 		}
 		return true;
